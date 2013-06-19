@@ -1,0 +1,49 @@
+<!doctype html>
+    <head>
+        <title>Coinbase - OAuth2 Vulnerability Proof-Of-Concept</title>
+        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+        <style type="text/css">
+          body {
+            padding-top: 30px; /* 60px to make the container go all the way to the bottom of the topbar */
+          }
+          .main {
+          	margin-top: 30px;
+         	}
+        </style>
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+          <div class="navbar-inner">
+            <div class="container">
+              <a class="brand" href="/">Coinbase - OAuth2 Vulnerability Proof-Of-Concept</a>
+          </div>
+        </div>
+
+        <div class="container main">
+          <div class="row span8 offset2">
+		        <h2>Results of OAuth2 authorization replay attack</h2>
+		        
+		        <table class="table table-striped table-bordered" id="table_div">
+						 	<tr>
+								<th>Code</th>
+								<td>{{ code_token }}</td>
+						 	</tr>
+						 	<tr>
+								<th>Access Token</th>
+								<td>{{ access_token }}</td>
+						 	</tr>
+						</table>
+						
+		        <table class="table table-striped table-bordered" id="table_div">
+		        {% for key, value in results %}
+						 	<tr>
+								<th>{{ key }}</th>
+								<td>{{ value }}</td>
+						 	</tr>
+						{% endfor %}
+						</table>
+          </div>
+        </div> <!-- /container -->
+    </body>
+</html>
+

